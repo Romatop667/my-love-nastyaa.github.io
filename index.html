@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Настеньки ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .box {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            color: #4a2b7a;
+            font-size: 32px;
+            margin-bottom: 35px;
+            line-height: 1.3;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        button {
+            padding: 18px 45px;
+            border: none;
+            border-radius: 60px;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            flex: 1 1 auto;
+            min-width: 150px;
+        }
+        
+        button:active {
+            transform: scale(0.95);
+        }
+        
+        .yes-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .no-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .error-message {
+            font-size: 24px;
+            color: #f44336;
+            margin: 25px 0;
+            min-height: 90px;
+            font-weight: bold;
+            padding: 10px;
+            background: #fff0f0;
+            border-radius: 20px;
+        }
+        
+        .final-message {
+            font-size: 28px;
+            color: #4CAF50;
+            margin-top: 30px;
+            line-height: 1.5;
+            font-weight: bold;
+            animation: heartBeat 1.2s infinite;
+            padding: 20px;
+            background: #f0fff0;
+            border-radius: 30px;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>❤️ Настенька ты готова ко мне вернуться? ❤️</h1>
+        
+        <div class="buttons" id="mainButtons">
+            <button class="yes-btn" onclick="handleYes()">ДА ❤️</button>
+            <button class="no-btn" onclick="handleNo()">НЕТ</button>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+        
+        <div id="finalMessage" class="final-message hidden">
+            ❤️ я очень рад что ты сделала свой осознанный выбор ❤️
+            <br>
+            <span style="font-size: 32px;">я тебя безумно люблю</span>
+            <br>
+            <span style="font-size: 50px;">❤️</span>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        
+        const errorMessages = [
+            "❌ ОШИБКА! Попробуй еще раз",
+            "❌ НЕВЕРНО! Нажми ДА",
+            "❌ СИСТЕМНАЯ ОШИБКА! Только ДА",
+            "❌ ДОСТУП ЗАПРЕЩЕН! Жми ДА",
+            "❌ КРИТИЧЕСКАЯ ОШИБКА! ДА!!",
+            "❌ СБОЙ! Выбери правильный ответ",
+            "❌ ОШИБКА 404 - кнопка НЕТ не найдена",
+            "❌ НЕПРАВИЛЬНО! Твое сердце говорит ДА"
+        ];
+
+        function handleNo() {
+            const errorDiv = document.getElementById('errorMessage');
+            
+            if (clickCount < errorMessages.length) {
+                errorDiv.innerHTML = errorMessages[clickCount];
+                clickCount++;
+            } else {
+                errorDiv.innerHTML = "❌ Сдаюсь... но кнопка ДА все еще ждет тебя! ❤️";
+            }
+        }
+
+        function handleYes() {
+            document.getElementById('mainButtons').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            document.getElementById('finalMessage').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
